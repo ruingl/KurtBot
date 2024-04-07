@@ -1,0 +1,23 @@
+{
+  "name": "KurtBot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Rui",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "figlet": "^1.7.0",
+    "fs-extra": "^11.2.0",
+    "https-proxy-agent": "4.0.0",
+    "mqtt": "3.0.0",
+    "npmlog": "1.2.0",
+    "request": "2.53.0",
+    "websocket-stream": "5.5.0"
+  }
+}

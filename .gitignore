@@ -1,0 +1,4 @@
+.upm/
+.cache/
+.replit/
+node_modules/
