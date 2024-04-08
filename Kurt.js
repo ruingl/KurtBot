@@ -56,7 +56,7 @@ async function start() {
           const listen = require('./kurt/listen');
           if (err) return logger.error(err);
           
-          listen(err, event);
+          listen(api, event);
         });
       });
     }

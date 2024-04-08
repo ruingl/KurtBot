@@ -2,6 +2,7 @@ module.exports = async function(api, event) {
   const logger = require('./logger');
   const fonts = require('./handle/createFonts');
   const handleCommand = require('./handle/handleCommand');
+  const handleEvent = require('./handle/handleEvent');
 
   const message = {
     reply: (msg) => {
