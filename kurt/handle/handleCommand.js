@@ -16,7 +16,7 @@ module.exports = async function(api, event, message, fonts, logger) {
       message.reply(`KurtBot prefix: ${botPrefix}`);
     } else if (event.body) {
       const commandName = command && command.toLowerCase();
-      const cmdFile = commands[command];
+      const cmdFile = commands.get(command);
 
       if (cmdFile) {
         try {
@@ -26,9 +26,9 @@ module.exports = async function(api, event, message, fonts, logger) {
             if (cmdFile.config?.usePrefix !== false &&
               !event.body?.toLowerCase().startsWith(botPrefix)
             ) {
-              message.reply('❌ | This command does not use prefixes!');
+              await cmdFile.run(api, event, args, message, fonts, logger);
             } else if (
-              cmdFile.metadata?.hasPrefix === false &&
+              cmdFile.config?.usePrefix === false &&
               event.body?.toLowerCase().startsWith(botPrefix)
             ) {
               message.reply('❌ | This command does not use prefixes!');
@@ -36,9 +36,10 @@ module.exports = async function(api, event, message, fonts, logger) {
               cmdFile.config?.hasPrefix === false &&
               !event.body?.toLowerCase().startsWith(botPrefix)
             ) {
+              message.reply('❌ | This command does not use prefixes!');
+            } else {
+              await cmdFile.run(api, event, args, message, fonts, logger);
             }
-
-            await cmdFile.run(api, event, args, message, fonts, logger);
           }
         } catch (error) {
           logger.error(error.stack);
